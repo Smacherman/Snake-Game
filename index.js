@@ -16,6 +16,7 @@ function createGrid(){
     grid.appendChild(square);
     squares.push(square);
     }
+    scoreDisplay.textContent = score;
 }
 createGrid()
 
@@ -40,11 +41,10 @@ function move() {
       squares[tail].classList.add("snake");
       currentSnake.push(tail);
       generateApples();
+      score++;
+      scoreDisplay.textContent = score;
+
  }
-
-
-
-
  squares[currentSnake[0]].classList.add("snake");
 }
 move()
