@@ -94,5 +94,3 @@ function control(e) {
 
 document.addEventListener("keyup", control);
 startButton.addEventListener("click", startGame)
-
-console.log("Greg is gonna see this and I'm happy about that")
