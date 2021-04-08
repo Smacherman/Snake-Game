@@ -12,13 +12,13 @@ let speed = 0.9;
 let timerId = 0;
 
 // Building the orignal game grid
-function createGrid(){
-    for (let i = 0; i < width*width; i++){
-    const square = document.createElement("div");
-    square.classList.add("square");
-    grid.appendChild(square);
-    squares.push(square);
-    }
+function createGrid() {
+   for (let i = 0; i < width * width; i++) {
+      const square = document.createElement("div");
+      square.classList.add("square");
+      grid.appendChild(square);
+      squares.push(square);
+   }
 }
 
 createGrid()
@@ -42,19 +42,19 @@ function startGame() {
 // Basic movement for Snake
 function move() {
    if (
-      (currentSnake[0] + width >= width*width && direction === width) ||
-      (currentSnake[0] % width === width-1 && direction === 1) || 
-        (currentSnake[0] % width === 0 && direction === -1) ||
-        (currentSnake[0] - width < 0 && direction === -width) ||
-        squares[currentSnake[0] + direction].classList.contains('snake')
+      (currentSnake[0] + width >= width * width && direction === width) ||
+      (currentSnake[0] % width === width - 1 && direction === 1) ||
+      (currentSnake[0] % width === 0 && direction === -1) ||
+      (currentSnake[0] - width < 0 && direction === -width) ||
+      squares[currentSnake[0] + direction].classList.contains('snake')
    )
-   return clearInterval(timerId)
+      return clearInterval(timerId)
 
- const tail = currentSnake.pop();
- squares[tail].classList.remove("snake");
- currentSnake.unshift(currentSnake[0] + direction);
+   const tail = currentSnake.pop();
+   squares[tail].classList.remove("snake");
+   currentSnake.unshift(currentSnake[0] + direction);
 
- if ( squares[currentSnake[0]].classList.contains("apple")) {
+   if (squares[currentSnake[0]].classList.contains("apple")) {
       squares[currentSnake[0]].classList.remove("apple");
       squares[tail].classList.add("snake");
       currentSnake.push(tail);
@@ -65,8 +65,8 @@ function move() {
       intervalTime = intervalTime * speed;
       timerId = setInterval(move, intervalTime);
 
- }
- squares[currentSnake[0]].classList.add("snake");
+   }
+   squares[currentSnake[0]].classList.add("snake");
 }
 
 // Getting Apples to generate randomly
@@ -81,15 +81,15 @@ generateApples()
 
 // How user controls game
 function control(e) {
-     if (e.keyCode === 39){
-        direction = 1
-     } else if (e.keyCode === 38){
-        direction = -width
-     } else if (e.keyCode === 37){
-        direction = -1
-     } else if (e.keyCode === 40){
-        direction = +width
-     }
+   if (e.keyCode === 39) {
+      direction = 1
+   } else if (e.keyCode === 38) {
+      direction = -width
+   } else if (e.keyCode === 37) {
+      direction = -1
+   } else if (e.keyCode === 40) {
+      direction = +width
+   }
 }
 
 document.addEventListener("keyup", control);
